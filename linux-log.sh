@@ -23,3 +23,17 @@ echo -n "Memory usage: "
 free | awk '/Mem:/ {printf "%.2f%%\n", $3/$2 * 100}'
 echo "=========================================="
 } >> "$logfilename"
+
+#size checking (byte) and log rotate
+size_checking=$(stat -c%s "$logfilename")
+
+if [ "$size_checking" -gt 65000 ]; then 
+  countfile=1
+
+  while [ -f "systemavailability$(date +%Y%m%d)-$countfile.log" ]; do
+    countfile=$((countfile + 1))
+  done
+
+  mv "$logfilename" "systemavailability$(date +%Y%m%d)-$countfile.log"
+  touch "$logfilename"
+fi
