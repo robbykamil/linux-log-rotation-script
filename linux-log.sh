@@ -37,3 +37,12 @@ if [ "$size_checking" -gt 65000 ]; then
   mv "$logfilename" "systemavailability$(date +%Y%m%d)-$countfile.log"
   touch "$logfilename"
 fi
+
+#zip log file yesterday
+yesterday=$(date -d "yesterday" "+%Y%m%d") #date format of yesterday
+
+zipfilename="systemavailability-$yesterday.zip"
+
+if ls systemavailability$yesterday*log >/dev/null 2>&1 && [ ! -f "$zipfilename"]; then
+  zip -m "$zipfilename" systemavailability$yesterday*log
+fi
