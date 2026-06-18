@@ -95,7 +95,5 @@ Memory usage: 42.35%
 
 ## Future Improvements
 
-- Archive retention policy
-- Automatic cleanup of old archives
 - Docker support
 - Cron deployment examples
