@@ -25,9 +25,10 @@ echo "=========================================="
 } >> "$logfilename"
 
 #size checking (byte) and log rotate
+filesize=65000
 size_checking=$(stat -c%s "$logfilename")
 
-if [ "$size_checking" -gt 65000 ]; then 
+if [ "$size_checking" -gt "$filesize" ]; then 
   countfile=1
 
   while [ -f "systemavailability$(date +%Y%m%d)-$countfile.log" ]; do
@@ -43,6 +44,6 @@ yesterday=$(date -d "yesterday" "+%Y%m%d") #date format of yesterday
 
 zipfilename="systemavailability-$yesterday.zip"
 
-if ls systemavailability$yesterday*log >/dev/null 2>&1 && [ ! -f "$zipfilename"]; then
+if ls systemavailability$yesterday*log >/dev/null 2>&1 && [ ! -f "$zipfilename" ]; then
   zip -m "$zipfilename" systemavailability$yesterday*log
 fi
