@@ -72,6 +72,7 @@ Execute:
 
 ## Example Output
 
+```text
 ==========================================
 Time: 2026-06-16 09:30:12
 
@@ -82,10 +83,10 @@ root 5.2% mysqld
 
 Memory usage: 42.35%
 ==========================================
+```
 
 ## Future Improvements
 
-- Configurable log size threshold
 - Archive retention policy
 - Automatic cleanup of old archives
 - Docker support
