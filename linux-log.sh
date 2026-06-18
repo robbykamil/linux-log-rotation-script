@@ -47,3 +47,8 @@ zipfilename="systemavailability-$yesterday.zip"
 if ls systemavailability$yesterday*log >/dev/null 2>&1 && [ ! -f "$zipfilename" ]; then
   zip -m "$zipfilename" systemavailability$yesterday*log
 fi
+
+#set the period of archive retention (days)
+retention=30
+
+find . -maxdepth 1 -type f -name "*.zip" -mtime +"$retention" -delete
