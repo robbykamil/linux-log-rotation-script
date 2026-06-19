@@ -18,9 +18,20 @@ Simple Bash script to monitor system availability and automatically rotate log f
 
 - Archive previous day's logs into ZIP format
 
+## Repository Structure
+
+```text
+.
+├── linux-log.sh             # Main monitoring script
+└── output_logs/             # Output folder (automatically created by script)
+    ├── systemavailabilityYYYYMMDD.log       # Today's active log
+    ├── systemavailabilityYYYYMMDD-1.log     # Rotated log when file is full
+    └── systemavailability-YYYYMMDD.zip      # Archived logs from yesterday
+```
+
 ## Log Structure
 
-Example:
+Example inside `output_logs/`:
 
 ```text
 systemavailability20260616.log
@@ -30,11 +41,11 @@ systemavailability20260616-2.log
 
 When the active log file exceeds 65 KB:
 
-systemavailability20260616.log
+output_logs/systemavailability20260616.log
 
 will be rotated into:
 
-systemavailability20260616-1.log
+output_logs/systemavailability20260616-1.log
 
 and a new log file will be created.
 
@@ -43,14 +54,14 @@ and a new log file will be created.
 At the start of a new day:
 
 ```text
-systemavailability20260615.log
-systemavailability20260615-1.log
-systemavailability20260615-2.log
+output_logs/systemavailability20260615.log
+output_logs/systemavailability20260615-1.log
+output_logs/systemavailability20260615-2.log
 ```
 
 will be compressed into:
 
-systemavailability-20260615.zip
+output_logs/systemavailability-20260615.zip
 
 The original log files are removed automatically after compression.
 
