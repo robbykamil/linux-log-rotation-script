@@ -80,14 +80,27 @@ The original log files are removed automatically after compression.
 Make the script executable:
 
 ```text
-chmod +x systemavailability.sh
+chmod +x linux-log.sh
 ```
 
 Execute:
 
 ```text
-./systemavailability.sh
+./linux-log.sh
 ```
+
+## Automation (Cron Job)
+
+To run this script automatically in the background, you can set up a cron job.
+
+1. Open the crontab editor:
+   ```bash
+   crontab -e
+   ```
+2. Add the following line to run the script every 5 minutes (replace with your actual script path):
+   ```text
+   */5 * * * * /path/to/your/script/linux-log.sh
+   ```
 
 ## Example Output
 
@@ -107,4 +120,3 @@ Memory usage: 42.35%
 ## Future Improvements
 
 - Docker support
-- Cron deployment examples
